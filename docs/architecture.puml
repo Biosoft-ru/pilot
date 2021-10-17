@@ -1,0 +1,60 @@
+@startuml
+node "worker node" as worker {
+    package pilot {
+        component Camunda
+        database H2
+        file "scenario(bpmn)" as bpmn
+        file "params(json)" as json
+        folder Python {
+            file download
+            file upload
+            file start
+            file retry
+            file status
+            file terminate 
+        }
+    } 
+
+    folder workDir {
+       file input
+       file output
+       file logs
+       file status 
+    }
+
+    package program 
+
+}
+
+node storage {
+    file input as storage_in
+    file output as storage_out
+}
+
+node scheduler
+
+node Kafka
+
+database history
+
+node "web UI" as web
+
+web --> scheduler : 1.
+scheduler --> web : 8. 
+
+scheduler -d-> Camunda : 2.
+bpmn --> Camunda
+json --> Camunda
+Camunda -> H2
+
+start --> program : 4.
+workDir --> program
+
+status <-> Kafka : 5
+
+
+Kafka <-> scheduler : 6
+scheduler -> history : 7
+
+storage --> workDir : 3.
+@enduml
