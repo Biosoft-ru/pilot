@@ -13,3 +13,7 @@ Links to PanDA Pilot:
 * https://cds.cern.ch/record/2285919/files/ATL-SOFT-SLIDE-2017-815.pdf
 * https://inspirehep.net/files/6c1952977c13c5011f9baa5feffab309
 
+## Main ideas
+
+## Architecture overview
+![alternative text](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Biosoft-ru/pilot/main/docs/architecture.puml)
