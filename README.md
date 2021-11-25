@@ -17,3 +17,15 @@ Links to PanDA Pilot:
 
 ## Architecture overview
 ![alternative text](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Biosoft-ru/pilot/main/docs/architecture.puml)
+
+## Database setup
+
+Assuming the you have h2 jar file already somewhere in your local Maven repostory you can create database file using command
+
+### on Linux
+```
+java -cp .m2/repository/com/h2database/h2/1.4.200/h2-*.jar org.h2.tools.Shell \
+    -url "jdbc:h2:~/pilot;INIT=runscript from '~/camunda-bpm-tomcat-7.12.0/sql/create/h2_engine_7.12.0.sql'" \
+    -user sa -password '' -sql "SHOW TABLES"
+```
+
