@@ -20,11 +20,14 @@ Links to PanDA Pilot:
 
 ## Database setup
 
-Assuming the you have h2 jar file already somewhere in your local Maven repostory you can create database file using command
+Assuming that you have h2 jar already somewhere in your local Maven repository you can create database file using command
 
 ### on Linux
+
+Replace `h2/1.4.200/h2-1.4.200.jar` and `7.12.0/sql/create/h2_engine_7.12.0.sql` with versions that you have installed
+
 ```
-java -cp .m2/repository/com/h2database/h2/1.4.200/h2-*.jar org.h2.tools.Shell \
+java -cp .m2/repository/com/h2database/h2/1.4.200/h2-1.4.200.jar org.h2.tools.Shell \
     -url "jdbc:h2:~/pilot;INIT=runscript from '~/camunda-bpm-tomcat-7.12.0/sql/create/h2_engine_7.12.0.sql'" \
     -user sa -password '' -sql "SHOW TABLES"
 ```
