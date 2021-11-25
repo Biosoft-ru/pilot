@@ -24,11 +24,11 @@ Assuming that you have H2 jar already somewhere in your local Maven repository y
 
 ### on Linux
 
-Replace `h2/1.4.200/h2-1.4.200.jar` and `7.12.0/sql/create/h2_engine_7.12.0.sql` with versions that you have installed
+Replace `h2/1.4.200/h2-1.4.200.jar` and `7.12.0/sql/create/h2_xxxxxx_7.12.0.sql` with versions that you have installed.
 
 ```
 java -cp .m2/repository/com/h2database/h2/1.4.200/h2-1.4.200.jar org.h2.tools.Shell \
-    -url "jdbc:h2:~/pilot;INIT=runscript from '~/camunda-bpm-tomcat-7.12.0/sql/create/h2_engine_7.12.0.sql'" \
+    -url "jdbc:h2:~/pilot;INIT=runscript from '~/camunda-bpm-tomcat-7.12.0/sql/create/h2_engine_7.12.0.sql'\;runscript from '~/camunda-bpm-tomcat-7.12.0/sql/create/h2_identity_7.12.0.sql'" \
     -user sa -password '' -sql "SHOW TABLES"
 ```
 
