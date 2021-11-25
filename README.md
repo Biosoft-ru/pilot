@@ -46,3 +46,24 @@ java -cp .m2/repository/com/h2database/h2/1.4.200/h2-*.jar org.h2.tools.Shell \
     -url "jdbc:h2:tcp://localhost/~/pilot" \
     -user sa -password '' 
 ```
+
+## Configure Camunda to use H2 database
+
+Open file `conf/server.xml` inside Camunda's Tomcat installation 
+and add the following definition for connection pool
+
+```
+    <Resource name="jdbc/ProcessEngine"
+              auth="Container"
+              type="javax.sql.DataSource" 
+              factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+              uniqueResourceName="process-engine"
+              driverClassName="org.h2.Driver" 
+              url="jdbc:h2:tcp://localhost/~/pilot;DB_CLOSE_ON_EXIT=FALSE"
+              defaultTransactionIsolation="READ_COMMITTED"
+              username="sa"  
+              password=""
+              maxActive="20"
+              minIdle="5"
+              maxIdle="20" />
+```
