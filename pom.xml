@@ -39,7 +39,7 @@
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <version>${version.h2}</version>
-      <scope>test</scope>
+      <!--scope>test</scope-->
     </dependency>
 
     <!-- redirect slf4j logging to jdk logging -->
