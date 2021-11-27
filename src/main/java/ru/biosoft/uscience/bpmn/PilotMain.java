@@ -2,8 +2,9 @@ package ru.biosoft.uscience.bpmn;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Base64;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +18,13 @@ import org.apache.commons.cli.ParseException;
 import org.h2.tools.Server;
 import org.yaml.snakeyaml.Yaml;
 
+/**
+ * Main class to start pilot to execute some BPMN workflow using Camunda engine. 
+ *
+ * Pending:
+ *  - preload worlflows into H2 db
+ *  - working dir for H2 database is ./tmp, if changed it should be also changed in jdbc parameter in camunda.cfg.xml
+ */
 public class PilotMain 
 {
 	// Keys for YAML file
@@ -150,6 +158,20 @@ public class PilotMain
 
         yamlMap = (new Yaml()).load(yamlStr);
         System.out.println(yamlMap);        
+        
+        // copy h2 database
+        try
+        {
+        	File h2Clean = new File("./h2/pilot.mv.db.clean");
+        	File h2 = new File(workDir, "pilot.mv.db");
+        	Files.copy(h2Clean.toPath(), h2.toPath());
+        }
+        catch(Exception e)
+        {
+            log.log(Level.SEVERE, "Can not copy H2 database: " + e.getMessage(), e);
+            System.exit(-1);
+        }
+        
         
         log.log(Level.INFO, "Working dir is ready, path: " + path + System.lineSeparator() + "YAML: " + yamlMap);
 	}
