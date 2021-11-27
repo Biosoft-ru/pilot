@@ -1,7 +1,5 @@
 package ru.biosoft.uscience.bpmn;
 
-//import com.developmentontheedge.be5.bpmn.CamundaBpmnServiceImpl;
-
 import java.util.Map;
 import java.util.Hashtable;
 import java.util.List;
