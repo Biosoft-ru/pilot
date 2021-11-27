@@ -3,8 +3,17 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <bean id="processEngineConfiguration"
-        class="org.camunda.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+        class="org.camunda.bpm.engine.impl.cfg.StandaloneProcessEngineConfiguration">
+
+    <property name="jdbcUrl" value="jdbc:h2:tcp://localhost/./h2/pilot" />
+    <property name="jdbcUsername" value="sa" />
+    <property name="history" value="full" />
 
   </bean>
 
+  <bean id="processEngineConfiguration.memory"
+        class="org.camunda.bpm.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
+  </bean>
+
 </beans>
+

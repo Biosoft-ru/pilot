@@ -24,7 +24,8 @@ public class CamundaBpmnServiceImpl implements BpmnService
 
 		ProcessEngineConfiguration pec = ProcessEngineConfiguration
 				.createProcessEngineConfigurationFromInputStream(cfg)
-				.setJdbcDriver("org.postgresql.Driver");
+				.setJdbcDriver("org.h2.Driver");
+//				.setJdbcDriver("org.postgresql.Driver");
 
 		processEngine = pec.buildProcessEngine();
 	}
