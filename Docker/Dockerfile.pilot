@@ -6,7 +6,7 @@ WORKDIR /root
 
 ADD pom.xml /root
 ADD src /root/src
-ADD h2/pilot.mv.db.clean /root/h2
+ADD h2/pilot.mv.db.clean /root
 
 # Build maven repository
 
