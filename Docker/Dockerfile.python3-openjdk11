@@ -1,0 +1,36 @@
+FROM debian:bullseye
+
+# docker build -f Docker/Dockerfile.python3-openjdk11 -t developmentontheedge/ru.biosoft.uscience-base .
+
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+
+RUN apt-get -yq update && apt-get -yq upgrade \
+   && apt-get -yq install apt-utils tini curl wget ssh mc \
+   && apt-get -yq install python3 python3-pip 
+
+RUN apt-get install -yq --no-install-recommends \
+   	git maven openjdk-11-jdk-headless \
+   ; 
+
+RUN pip3 install \
+    numpy \
+    matplotlib \
+    scipy \
+    scikit-learn \
+    pandas \
+    nltk
+
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+
+# We aren't running a GUI, so force matplotlib to use
+# the non-interactive "Agg" backend for graphics.
+# Run matplotlib once to build the font cache.
+ENV MATPLOTLIBRC=${HOME}/.config/matplotlib/matplotlibrc
+RUN mkdir -p ${HOME}/.config/matplotlib && \
+    echo "backend      : Agg" > ${HOME}/.config/matplotlib/matplotlibrc && \
+    python -c "import matplotlib.pyplot"
+
+RUN rm -rf ${HOME}/.cache/pip && \
+    rm -rf /var/lib/apt/lists/*
+
+
