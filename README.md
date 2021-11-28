@@ -18,6 +18,15 @@ Links to PanDA Pilot:
 ## Architecture overview
 ![alternative text](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/Biosoft-ru/pilot/main/docs/architecture.puml)
 
+## Run from Docker image
+
+```
+docker run --rm -it developmentontheedge/ru.biosoft.uscience-pilot \
+   mvn -q compile exec:java \
+         -Dexec.mainClass=ru.biosoft.uscience.bpmn.PilotMain \
+         -Dexec.args="-c -y d29ya2Zsb3c6IHByaW50VmFyaWFibGVzLmJwbW4KICA="
+```
+
 ## Database setup
 
 Assuming that you have H2 jar already somewhere in your local Maven repository you can create database file using command
