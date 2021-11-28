@@ -1,5 +1,7 @@
 FROM developmentontheedge/ru.biosoft.uscience-base
 
+# docker build -f Docker/Dockerfile.pilot -t developmentontheedge/ru.biosoft.uscience-pilot 
+
 WORKDIR /root
 
 ADD pom.xml /root
